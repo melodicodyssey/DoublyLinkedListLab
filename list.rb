@@ -63,7 +63,8 @@ class List
     end
   end
 
-  def find_node(index)
+  def find_node(index, insert=false)
+    index -= 1 if insert == true && index > 0
     return nil if index < 0 || index >= @length
     current_node = @head
     node = 0
@@ -75,14 +76,14 @@ class List
   end
 
   def insert(index, value)
-    current_node = find_node(index)
+    current_node = find_node(index, true)
     if @head == nil || current_node == @tail
       return push(value)
     else
-      current_node = current_node.prev_value
       new_node = Node.new(value)
       new_node.next_value = current_node.next_value
       current_node.next_value = new_node
+      @head = new_node if index == 0
       @length += 1
     end
   end
