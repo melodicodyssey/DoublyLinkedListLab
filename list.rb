@@ -35,6 +35,7 @@ class List
     new_node = Node.new(value)
     if length > 0
       new_node.prev_value = @tail
+      @tail.next_value = new_node
       @tail = new_node
       if length == 1
         @head.next_value = new_node
