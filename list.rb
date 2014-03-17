@@ -19,7 +19,7 @@
 # reverse, max, min, reduce, each, flatten
 class List
 
-
+  attr_accessor :head, :tail
 
   def initialize
     @head = nil
