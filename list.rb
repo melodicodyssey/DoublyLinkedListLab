@@ -19,6 +19,8 @@
 # reverse, max, min, reduce, each, flatten
 class List
 
+
+
   def initialize
     @head = nil
     @tail = nil
@@ -29,19 +31,20 @@ class List
   def push(value)
     new_node = Node.new(value)
     unless @length == 0
-      new_node.previous_value = @tail
+      new_node.prev_value = @tail
       @tail = new_node
     else
       @head = new_node
       @tail = new_node
     end
+    @length += 1
     new_node
   end
 
   # Returns the value that is popped off
   # or nil if none exists
   def pop
-    prev = @tail.previous_value
+    prev = @tail.prev_value
     prev.next_value = nil
     @tail = prev
     @tail
