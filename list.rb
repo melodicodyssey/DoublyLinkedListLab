@@ -20,8 +20,9 @@
 class List
 
   attr_accessor :head, :tail
-
-  def initialize
+  attr_reader :length
+  
+  def initialize()
     @head = nil
     @tail = nil
     @length = 0
