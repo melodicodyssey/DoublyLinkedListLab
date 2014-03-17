@@ -33,9 +33,13 @@ class List
   # Adds a new value to the end of the list.
   def push(value)
     new_node = Node.new(value)
-    unless @length == 0
+    if length > 0
       new_node.prev_value = @tail
       @tail = new_node
+      if length == 1
+        @head.next_value = new_node
+        new_node.prev_value = head
+      end
     else
       @head = new_node
       @tail = new_node
@@ -63,6 +67,14 @@ class List
 
   # Given an index, returns the value at that index
   def [](index)
+    return nil if index < 0 || index >= @length
+    current_node = @head
+    node = 0
+    while node < index
+      current_node = current_node.next_value
+      node += 1
+    end
+    return current_node.value
   end
 
   # Sets a value at the given index.  Returns the value that
