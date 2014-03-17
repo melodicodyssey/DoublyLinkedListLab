@@ -81,7 +81,15 @@ class List
   # Sets a value at the given index.  Returns the value that
   # was assigned
   def []=(index, value)
-    value
+    return nil if index < 0 || index >= @length
+    current_node = @head
+    node = 0
+    while node < index
+      current_node = current_node.next_value
+      node += 1
+    end
+    current_node.value = value
+    return current_node.value
   end
 
   # Returns the first value that was removed from the list and
