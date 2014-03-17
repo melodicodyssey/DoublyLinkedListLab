@@ -41,17 +41,21 @@ class List
       @tail = new_node
     end
     @length += 1
-    new_node
+    return new_node.value
   end
 
   # Returns the value that is popped off
   # or nil if none exists
   def pop
-    prev = @tail.prev_value
-    prev.next_value = nil
-    @tail = prev
-    @length -= 1
-    @tail
+    old = @tail
+    if @tail == nil
+      return nil
+    else
+      prev = @tail
+      @tail = @tail.prev_value
+      @length -= 1
+      return prev.value
+    end
   end
 
   def insert(value)
