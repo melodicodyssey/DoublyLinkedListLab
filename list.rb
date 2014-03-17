@@ -64,16 +64,11 @@ class List
   end
 
   def insert(index, value)
-    return nil if index < 0 || index >= @length
-    current_node = @head
-    node = 0
-    while node < index - 1
-      current_node = current_node.next_value
-      node += 1
+    if @length == 0
+      return self.push(value)
+    else
+      new_node = Node.new(value)
     end
-    new_node = Node.new(value)
-    new_node.next_value = current_node.next_value
-    current_node.next_value = new_node
   end
 
   # Given an index, returns the value at that index
