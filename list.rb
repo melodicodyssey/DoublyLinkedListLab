@@ -17,11 +17,13 @@
 # after the previous methods are implemented:
 
 # reverse, max, min, reduce, each, flatten
+require './node.rb'
+
 class List
 
   attr_accessor :head, :tail
   attr_reader :length
-  
+
   def initialize()
     @head = nil
     @tail = nil
@@ -48,6 +50,7 @@ class List
     prev = @tail.prev_value
     prev.next_value = nil
     @tail = prev
+    @length -= 1
     @tail
   end
 
