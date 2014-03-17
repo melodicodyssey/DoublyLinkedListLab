@@ -27,6 +27,14 @@ class List
 
   # Adds a new value to the end of the list.
   def push(value)
+    new_node = Node.new(value)
+    unless @length === 0
+      new_node.previous_value = @tail
+      @tail = new_node
+    else
+      @head = new_node
+      @tail = new_node
+    end
   end
 
   # Returns the value that is popped off
