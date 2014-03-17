@@ -63,38 +63,41 @@ class List
     end
   end
 
+  def find_node(index)
+    return nil if index < 0 || index >= @length
+    current_node = @head
+    node = 0
+    while node < index
+      current_node = current_node.next_value
+      node += 1
+    end
+    return current_node
+  end
+
   def insert(index, value)
-    if @length == 0
-      return self.push(value)
+    current_node = find_node(index)
+    if @head == nil || current_node == @tail
+      return push(value)
     else
+      current_node = current_node.prev_value
       new_node = Node.new(value)
+      new_node.next_value = current_node.next_value
+      current_node.next_value = new_node
+      @length += 1
     end
   end
 
   # Given an index, returns the value at that index
   def [](index)
-    return nil if index < 0 || index >= @length
-    current_node = @head
-    node = 0
-    while node < index
-      current_node = current_node.next_value
-      node += 1
-    end
-    return current_node.value
+    node = find_node(index)
+    if node != nil then return node.value else return nil end
   end
 
   # Sets a value at the given index.  Returns the value that
   # was assigned
   def []=(index, value)
-    return nil if index < 0 || index >= @length
-    current_node = @head
-    node = 0
-    while node < index
-      current_node = current_node.next_value
-      node += 1
-    end
-    current_node.value = value
-    return current_node.value
+    node = find_node(index)
+    node.value = value
   end
 
   # Returns the first value that was removed from the list and
@@ -107,10 +110,10 @@ class List
   end
 
   def first
-    self[0]
+    @head.value
   end
 
   def last
-    self[@length-1]
+    @tail.value
   end
 end
