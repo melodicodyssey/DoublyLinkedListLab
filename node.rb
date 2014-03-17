@@ -4,5 +4,7 @@ class Node
   
   def initialize(value)
     @value = value
+    @previous_value = nil
+    @next_value = nil
   end
 end
